@@ -96,6 +96,6 @@ div.fp-watermark {
 }
 
 body {
-  background-color: rgb(24, 24, 24);
+  background-color: rgb(24, 24, 24) !important;
 }
 </style>
