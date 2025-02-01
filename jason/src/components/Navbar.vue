@@ -31,7 +31,7 @@
   });
 
   onMounted(() => {
-    const savedLang = localStorage.getItem("lang");
+    const savedLang = localStorage.getItem("lang") ?? "zh_TW";
     if (savedLang) {
         selectedLanguage.value = savedLang;
         locale.value = savedLang; // 確保 Vue I18n 語言同步
