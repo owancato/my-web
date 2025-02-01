@@ -24,7 +24,6 @@
             >
               {{ job.title }} - {{ job.company }}
             </h2>
-            <!-- Add transition-group wrapper around task list for animated sequential display -->
             <transition-group name="list" tag="div" class="task-list">
               <div
                 v-if="expandedJobIndex === i"
@@ -43,6 +42,7 @@
     </div>
   </div>
 </template>
+
 
 <script setup>
 import { ref, watch } from "vue";
@@ -151,10 +151,10 @@ const toggleJob = (jobIndex) => {
 .section {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start; /* Changed to flex-start for better alignment */
   flex-direction: column;
   text-align: center;
-  height: 100vh;
+  min-height: 100vh;
   padding: 20px;
   box-sizing: border-box;
 }
@@ -162,11 +162,6 @@ const toggleJob = (jobIndex) => {
 .timeline-container {
   width: 100%;
   max-width: 800px;
-}
-
-.timeline {
-  margin: 10px 0;
-  color: #ddd;
 }
 
 .timeline-item {
@@ -177,43 +172,11 @@ const toggleJob = (jobIndex) => {
   cursor: pointer;
 }
 
-.timeline-dot {
-  position: absolute;
-  left: 50%;
-  top: 8px;
-  width: 12px;
-  height: 12px;
-  background-color: #ddd;
-  border: 2px solid #3498db;
-  border-radius: 50%;
-  transform: translateX(-50%);
-}
-
 .timeline-content {
   border-radius: 5px;
   text-align: left;
   width: 100%;
 }
-
-.list-enter-active,
-.list-leave-active {
-  transition: all 0.5s ease;
-  transform: translateX(10px);
-}
-.list-enter-from,
-.list-leave-to {
-  transition: all 0.5s ease;
-  opacity: 0;
-  transform: translateX(10px);
-}
-
-/* Style the timeline container */
-.timeline-container {
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-}
-
 
 .works-container {
   display: flex;
@@ -225,6 +188,7 @@ const toggleJob = (jobIndex) => {
   border-radius: 10px;
 }
 
+/* Task List */
 .task-list {
   padding-left: 20px;
 }
@@ -249,21 +213,12 @@ const toggleJob = (jobIndex) => {
 
 /* Opposite content (date) should align to the center */
 .timeline-opposite {
-  padding-left: 10px; /* Space for the dot */
-  padding-right: 10px; /* Space for the dot */
+  padding-left: 10px; 
+  padding-right: 10px; 
   display: flex;
   align-items: center;
   color: #ddd;
   width: 100%;
-}
-
-/* Timeline content block */
-.timeline-content {
-  padding-left: 10px; /* Space for the dot */
-  padding-right: 10px; /* Space for the dot */
-  width: 100%;
-  display: flex;
-  flex-direction: column;
 }
 
 .job-title {
@@ -273,15 +228,65 @@ const toggleJob = (jobIndex) => {
   margin-bottom: 12px;
   cursor: pointer;
   border-radius: 8px;
-  transition: background-color 0.3s ease; /* Smooth background color transition */
+  transition: background-color 0.3s ease;
 }
 
 .job-title:hover {
-  background-color: #6a6d70; /* Light blue background on hover */
-  color: #ddd; /* Darker blue text on hover */
+  background-color: #6a6d70;
+  color: #ddd;
 }
 
 #job_timeline {
   background-color: #181818;
+}
+
+/* Media Queries for mobile */
+@media (max-width: 768px) {
+  .section {
+    padding-top: 500px !important;
+  }
+
+  h1 {
+    font-size: 3vh;
+  }
+
+  .task-dot {
+    width: 0px;
+    height: 0px;
+    background-color: #fcfcfc;
+    border-radius: 100%;
+  }
+
+  .works-container {
+    gap: 1rem;  /* Reduce gap between items on smaller screens */
+  }
+
+  .timeline-item {
+    padding-left: 15px; /* Reduce padding on mobile */
+    padding-right: 15px;
+  }
+
+  .job-title {
+    font-size: 1rem; /* Smaller font size for job titles on mobile */
+    margin-bottom: 10px; /* Less margin on mobile */
+  }
+
+  .task-item {
+    font-size: 0.875rem; /* Smaller font size for task items */
+  }
+
+  .task-list {
+    padding-left: 15px; /* Adjust padding for mobile */
+  }
+
+  /* When the job is expanded, move the task items down */
+  .task-item-expanded {
+    transform: translateY(20px); /* Moves the task item down */
+  }
+
+  .timeline-content {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
 </style>

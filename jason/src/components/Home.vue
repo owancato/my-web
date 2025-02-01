@@ -9,8 +9,8 @@
   </template>
   
   <script setup>
-import gifSrc from "@/assets/pepega-pls.gif";
-</script>
+  import gifSrc from "@/assets/pepega-pls.gif";
+  </script>
   
   <style scoped>
   .section {
@@ -20,28 +20,49 @@ import gifSrc from "@/assets/pepega-pls.gif";
     align-items: center;
     text-align: center;
     font-weight: bold;
+    padding: 20px;
+    overflow: hidden;
   }
   
   .text-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 100%;
   }
   
+  /* 讓標題適應不同裝置 */
   .headline {
-    font-size: 3rem; /* 第一行較大 */
+    font-size: 3rem; /* 桌機版 */
     font-weight: bold;
+    text-align: center;
   }
   
   .subheadline {
-    font-size: 1.5rem; /* 第二行較小 */
-    margin-top: 10px; /* 增加間距 */
+    font-size: 1.5rem;
+    margin-top: 10px;
   }
-
+  
+  /* GIF 自適應 */
   .gif {
-    max-width: 30%; /* 設定最大寬度為 50% */
+    max-width: 30%;
     height: auto;
     display: flex;
+  }
+  
+  /* 📌 手機版調整 */
+  @media (max-width: 768px) {
+    .headline {
+      font-size: 2rem; /* 手機版標題縮小 */
+    }
+    
+    .subheadline {
+      font-size: 1.2rem;
+    }
+  
+    .gif {
+      max-width: 60%; /* 手機版 GIF 放大 */
+    }
   }
   </style>
   

@@ -4,8 +4,7 @@
     <v-container class="container">
       <v-row no-gutters>
         <v-col
-          cols="18"
-          sm="6"
+          cols="12" sm="6" md="4" lg="3"
           v-for="(project, index) in projects"
           :key="index"
         >
@@ -13,18 +12,16 @@
             <v-avatar
               rounded="60"
               size="150"
-            ><!-- Project Image -->
-              <v-img :src=project.image alt="project image" class="project-image" />
+            >
+              <!-- Project Image -->
+              <v-img :src="project.image" alt="project image" class="project-image" />
             </v-avatar>
             <!-- Project Title -->
             <h3 class="project-title">{{ project.title }}</h3>
             <!-- Project Description -->
             <p class="project-description">{{ $t(project.description) }}</p>
             <!-- Tech Tags -->
-            <v-chip-group
-              class="tech-tags"
-              column
-            >
+            <v-chip-group class="tech-tags" column>
               <v-chip v-for="(tag, idx) in project.techTags" :key="idx" class="ma-1 tag" color="primary" text-color="white">
                 {{ tag }}
               </v-chip>
@@ -39,6 +36,7 @@
 <script setup>
 import dockerSrc from "@/assets/images/docker.png";
 import chromeSrc from "@/assets/images/chrome.png";
+
 const projects = [
   {
     title: "Ezdock",
@@ -62,7 +60,6 @@ const projects = [
   align-items: center;
   flex-direction: column;
   text-align: center;
-  height: 100vh;
   padding: 20px;
 }
 
@@ -85,7 +82,7 @@ const projects = [
 }
 
 .project-title {
-  font-size: 1.5rem;
+  font-size: 1.25rem; /* 微調標題大小 */
   font-weight: bold;
   margin-top: 16px;
   color: #ffffff;
@@ -95,7 +92,7 @@ const projects = [
   margin-top: 8px;
   color: #ddd;
   text-align: left;
-  font-size: 18px;
+  font-size: 16px; /* 更適合手機的字體大小 */
 }
 
 .tech-tags {
@@ -116,6 +113,26 @@ const projects = [
 }
 
 h1 {
-  font-size: 2rem;
+  font-size: 1.75rem; /* 調整標題大小 */
+  margin-bottom: 20px;
+}
+
+/* Media query for mobile responsiveness */
+@media (max-width: 768px) {
+  .section {
+    padding-top: 500px !important;
+  }
+
+  .project-title {
+    font-size: 1.2rem;  /* 微調手機版標題的大小 */
+  }
+
+  .project-description {
+    font-size: 14px;  /* 微調手機版文字的大小 */
+  }
+
+  .project-image {
+    height: 150px;  /* 在手機上調整圖片大小 */
+  }
 }
 </style>
