@@ -88,4 +88,8 @@ div.fp-watermark {
   display: none;
 }
 
+body {
+  background-color: rgb(24, 24, 24);
+}
+
 </style>
