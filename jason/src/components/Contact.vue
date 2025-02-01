@@ -53,6 +53,7 @@
     align-items: center;
     text-align: center;
     padding: 20px;
+    height: 100vh;
   }
   
   .contact-container {
